@@ -1,0 +1,25 @@
+.site-header,
+.site-content,
+.site-footer {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding: var(--space-m);
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-m);
+}
+
+.site-title {
+  font-size: var(--font-size-xl);
+  line-height: 1.2;
+}
+
+.site-footer {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-s);
+}
