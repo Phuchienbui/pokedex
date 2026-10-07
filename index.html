@@ -15,6 +15,18 @@
     <header class="site-header">
       <img class="site-logo" src="assets/favicon.svg" alt="" width="40" height="40" />
       <h1 class="site-title">Pokédex</h1>
+      <form class="search-form" role="search">
+        <label class="visually-hidden" for="search-input">Search Pokémon by name</label>
+        <input
+          class="search-input"
+          id="search-input"
+          data-id="search-input"
+          type="search"
+          placeholder="Search by name (at least 3 letters)"
+          autocomplete="off"
+        />
+        <button class="search-button" data-id="search-button" type="submit" disabled>Search</button>
+      </form>
     </header>
     <main data-id="content" class="site-content"></main>
     <footer class="site-footer">

@@ -2,3 +2,49 @@
   width: 2.5rem;
   height: 2.5rem;
 }
+
+.search-form {
+  display: flex;
+  flex: 1 1 18rem;
+  max-width: 32rem;
+  gap: var(--space-s);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.search-button {
+  padding: var(--space-s) var(--space-l);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+.search-button:disabled {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.search-message {
+  padding: var(--space-m);
+  color: var(--color-text-muted);
+}
+
+.search-results {
+  padding-left: var(--space-l);
+}

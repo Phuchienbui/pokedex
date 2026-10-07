@@ -23,3 +23,7 @@
   color: var(--color-text-muted);
   font-size: var(--font-size-s);
 }
+
+.site-header {
+  justify-content: space-between;
+}
