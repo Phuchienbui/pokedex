@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pokédex logo">
+  <circle cx="32" cy="32" r="30" fill="#f8f8f8" stroke="#2b2d42" stroke-width="4" />
+  <path d="M2 32a30 30 0 0 1 60 0z" fill="#e63946" stroke="#2b2d42" stroke-width="4" stroke-linejoin="round" />
+  <path d="M2 32h60" stroke="#2b2d42" stroke-width="5" />
+  <circle cx="32" cy="32" r="9" fill="#f8f8f8" stroke="#2b2d42" stroke-width="4" />
+</svg>
