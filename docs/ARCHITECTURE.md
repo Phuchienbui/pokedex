@@ -18,6 +18,7 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
 | `js/cache.js`        | `Map` caches for details, species and evolution chains                |
 | `js/templates.js`    | Functions returning HTML strings                                      |
 | `js/render.js`       | Writes templates into the DOM                                         |
+| `js/list.js`         | Main list: first page, "Load more", restoring the list after a search |
 | `js/search.js`       | Search input and filtering                                            |
 | `js/dialog.js`       | Detail dialog                                                         |
 | `assets/`            | Logo and favicon                                                      |
@@ -46,3 +47,21 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
   contains alternate forms such as `pikachu-gmax`, because the API lists them as separate entries.
 - **No match:** `render.js` inserts `<p data-id="not-found">` and removes it on the next search or
   when the field is cleared. The text is static, user input never enters the DOM.
+
+## Data loading
+
+- **Fetch-then-render.** `list.js` requests a page of 30 entries (`PAGE_SIZE`), then all details with
+  `Promise.all`, and only then draws the cards in one step. The user never sees half-filled cards.
+  The trade-off is a short wait with a loader instead of cards that appear one by one.
+- **Cache as `Map` of promises.** Every request goes through `fetchCached` in `api.js`. The Map
+  stores the promise, so two callers asking for the same entry share one request. A failed request
+  is removed from the Map, otherwise a retry would get the same rejected promise.
+- **Lazy evolution chain.** `fetchSpecies` and `fetchEvolutionChain` exist but are only called
+  when a dialog opens, never while the list is built. Species and chain are cached as well.
+- **Load more.** The offset is the number of loaded Pokémon. While a request runs, the button is
+  disabled and a spinner is shown in a `role="status"` region. At the end of the list (`count`
+  reached) the button is hidden.
+- **Errors.** A failed request shows a plain message with a "Try again" button, which repeats the
+  same action. Messages carry the class `list-message` so they are removed together.
+- **Search and list.** A search replaces the list and hides "Load more". Clearing the field
+  restores the already loaded Pokémon from memory, without new requests.
