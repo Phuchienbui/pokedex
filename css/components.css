@@ -40,11 +40,83 @@
   cursor: not-allowed;
 }
 
-.search-message {
+.list-message {
   padding: var(--space-m);
   color: var(--color-text-muted);
 }
 
-.search-results {
-  padding-left: var(--space-l);
+.retry-button {
+  margin-left: var(--space-s);
+}
+
+.pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-m);
+  padding: 0;
+  list-style: none;
+}
+
+.pokemon-card-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-m);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.pokemon-card-name {
+  font-weight: 600;
+}
+
+.status-area {
+  min-height: 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 3s;
+  }
+}
+
+.load-more-button {
+  display: block;
+  margin: var(--space-m) auto;
+  padding: var(--space-s) var(--space-xl);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.load-more-button:disabled {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
 }

@@ -28,7 +28,13 @@
         <button class="search-button" data-id="search-button" type="submit" disabled>Search</button>
       </form>
     </header>
-    <main data-id="content" class="site-content"></main>
+    <main data-id="content" class="site-content">
+      <ul class="pokemon-list"></ul>
+      <p class="status-area" role="status" aria-live="polite"></p>
+      <button class="load-more-button" data-id="load-more-button" type="button" hidden>
+        Load more
+      </button>
+    </main>
     <footer class="site-footer">
       <p>Data provided by <a href="https://pokeapi.co/">PokéAPI</a>.</p>
     </footer>
