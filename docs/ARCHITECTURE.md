@@ -72,3 +72,13 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
 - **Badges are spans.** A utton may only contain inline content, so the type badges are span elements and not a list.
 - **Hover and keyboard.** Hover and :focus-visible share one raised look with a shadow, plus a clear outline for keyboard focus. With prefers-reduced-motion the movement is switched off.
 - **Contrast.** Dark text on the saturated type colors is still to be checked and documented in the accessibility step.
+
+## Dialog
+
+- **Native `<dialog>` with `showModal()`.** The browser provides the backdrop, the focus trap and Escape to close, so no custom overlay code is needed. The alternative (a positioned `div` overlay) needs all of that written and tested by hand.
+- **Backdrop click.** The dialog has no padding, so a click on the dimmed area has the dialog itself as target. Clicks inside the content never have that target.
+- **No background scroll.** `.no-scroll` is added to `body` on open and removed in the `close` event, which fires for every way of closing (button, backdrop, Escape).
+- **Static frame, replaced content.** The close and arrow buttons stay in `index.html`; only `.dialog-info` is re-rendered. This keeps keyboard focus on a button while switching Pokémon.
+- **Previous and next.** They walk through `getShownPokemon()` in `render.js`, which is whatever is on screen (list or search result), and wrap around at both ends. The arrow keys do the same.
+- **Lazy evolution chain.** The species and chain are requested only after the dialog content is drawn, then cached. If the user switches Pokémon meanwhile, the late answer is dropped (`isCurrent`). Branching chains such as Eevee are flattened into one list.
+- **Reset margin.** The global reset removes the default `margin: auto` of the dialog, so `.pokemon-dialog` sets it again for centering.
