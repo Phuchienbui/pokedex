@@ -39,8 +39,8 @@ export function fetchPokemonDetails(name) {
 }
 
 // Species and evolution chain are lazy: they are only requested when a dialog opens.
-export function fetchSpecies(pokemonId) {
-  return fetchCached(speciesCache, pokemonId, `${API_BASE_URL}/pokemon-species/${pokemonId}`);
+export function fetchSpecies(speciesName) {
+  return fetchCached(speciesCache, speciesName, `${API_BASE_URL}/pokemon-species/${speciesName}`);
 }
 
 export function fetchEvolutionChain(chainUrl) {

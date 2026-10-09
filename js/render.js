@@ -1,6 +1,8 @@
 // Writes templates into the DOM.
 import {
+  getDialogInfoTemplate,
   getErrorTemplate,
+  getEvolutionTemplate,
   getLoaderTemplate,
   getNotFoundTemplate,
   getPokemonCardTemplate,
@@ -9,6 +11,14 @@ import {
 export const CONTENT_SELECTOR = '[data-id="content"]';
 const LIST_SELECTOR = '.pokemon-list';
 const LOAD_MORE_SELECTOR = '[data-id="load-more-button"]';
+
+// Pokémon currently shown as cards (list or search result), in display order.
+// The dialog uses this order for its previous and next buttons.
+let shownPokemon = [];
+
+export function getShownPokemon() {
+  return shownPokemon;
+}
 
 function getContent() {
   return document.querySelector(CONTENT_SELECTOR);
@@ -24,15 +34,27 @@ export function clearMessages() {
 
 export function clearResults() {
   clearMessages();
+  shownPokemon = [];
   document.querySelector(LIST_SELECTOR).replaceChildren();
 }
 
 export function renderCards(pokemons) {
+  shownPokemon = [...pokemons];
   document.querySelector(LIST_SELECTOR).innerHTML = getCardsHtml(pokemons);
 }
 
 export function appendCards(pokemons) {
+  shownPokemon.push(...pokemons);
   document.querySelector(LIST_SELECTOR).insertAdjacentHTML('beforeend', getCardsHtml(pokemons));
+}
+
+export function renderDialogInfo(pokemon) {
+  document.querySelector('.dialog-info').innerHTML = getDialogInfoTemplate(pokemon);
+}
+
+// names is null when the evolution chain could not be loaded.
+export function renderEvolution(names) {
+  document.querySelector('.evolution-content').innerHTML = getEvolutionTemplate(names);
 }
 
 export function showNotFound() {
