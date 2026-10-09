@@ -65,3 +65,10 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
   same action. Messages carry the class `list-message` so they are removed together.
 - **Search and list.** A search replaces the list and hides "Load more". Clearing the field
   restores the already loaded Pokémon from memory, without new requests.
+
+## Cards
+
+- **Type color table in CSS variables.** The 18 type colors are --type-* variables in ase.css. A card gets the class card-type-<first type>, which only sets --card-color. The card reads that one variable, so the template needs no inline style and a color is changed in one place.
+- **Badges are spans.** A utton may only contain inline content, so the type badges are span elements and not a list.
+- **Hover and keyboard.** Hover and :focus-visible share one raised look with a shadow, plus a clear outline for keyboard focus. With prefers-reduced-motion the movement is switched off.
+- **Contrast.** Dark text on the saturated type colors is still to be checked and documented in the accessibility step.
