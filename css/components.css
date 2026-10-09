@@ -61,17 +61,135 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--space-xs);
   width: 100%;
   padding: var(--space-m);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-m);
-  background-color: var(--color-surface);
+  background-color: var(--card-color, var(--color-surface));
   color: var(--color-text);
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pokemon-card-button:hover,
+.pokemon-card-button:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 25%);
+}
+
+.pokemon-card-button:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pokemon-card-button {
+    transition: none;
+  }
+
+  .pokemon-card-button:hover,
+  .pokemon-card-button:focus-visible {
+    transform: none;
+  }
+}
+
+.pokemon-card-id {
+  align-self: flex-end;
+  font-size: var(--font-size-s);
+  font-weight: 600;
 }
 
 .pokemon-card-name {
   font-weight: 600;
+}
+
+.type-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.type-badge {
+  padding: 0 var(--space-s);
+  border-radius: var(--radius-pill);
+  background-color: rgb(255 255 255 / 70%);
+  font-size: var(--font-size-s);
+}
+
+.card-type-normal {
+  --card-color: var(--type-normal);
+}
+
+.card-type-fire {
+  --card-color: var(--type-fire);
+}
+
+.card-type-water {
+  --card-color: var(--type-water);
+}
+
+.card-type-electric {
+  --card-color: var(--type-electric);
+}
+
+.card-type-grass {
+  --card-color: var(--type-grass);
+}
+
+.card-type-ice {
+  --card-color: var(--type-ice);
+}
+
+.card-type-fighting {
+  --card-color: var(--type-fighting);
+}
+
+.card-type-poison {
+  --card-color: var(--type-poison);
+}
+
+.card-type-ground {
+  --card-color: var(--type-ground);
+}
+
+.card-type-flying {
+  --card-color: var(--type-flying);
+}
+
+.card-type-psychic {
+  --card-color: var(--type-psychic);
+}
+
+.card-type-bug {
+  --card-color: var(--type-bug);
+}
+
+.card-type-rock {
+  --card-color: var(--type-rock);
+}
+
+.card-type-ghost {
+  --card-color: var(--type-ghost);
+}
+
+.card-type-dragon {
+  --card-color: var(--type-dragon);
+}
+
+.card-type-dark {
+  --card-color: var(--type-dark);
+}
+
+.card-type-steel {
+  --card-color: var(--type-steel);
+}
+
+.card-type-fairy {
+  --card-color: var(--type-fairy);
 }
 
 .status-area {
