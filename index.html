@@ -38,5 +38,36 @@
     <footer class="site-footer">
       <p>Data provided by <a href="https://pokeapi.co/">PokéAPI</a>.</p>
     </footer>
+    <dialog class="pokemon-dialog" data-id="dialog" aria-label="Pokémon details">
+      <div class="dialog-panel" data-id="overlay-pokemon-name">
+        <button
+          class="dialog-button dialog-close"
+          data-id="close-dialog-button"
+          type="button"
+          aria-label="Close details"
+        >
+          &times;
+        </button>
+        <article class="dialog-info"></article>
+        <nav class="dialog-nav" aria-label="Browse Pokémon">
+          <button
+            class="dialog-button"
+            data-id="prev-button"
+            type="button"
+            aria-label="Show previous Pokémon"
+          >
+            &larr; Previous
+          </button>
+          <button
+            class="dialog-button"
+            data-id="next-button"
+            type="button"
+            aria-label="Show next Pokémon"
+          >
+            Next &rarr;
+          </button>
+        </nav>
+      </div>
+    </dialog>
   </body>
 </html>
