@@ -2,7 +2,7 @@
 import { fetchEvolutionChain, fetchSpecies } from './api.js';
 import { getShownPokemon, renderDialogInfo, renderEvolution } from './render.js';
 
-export const DIALOG_SELECTOR = '[data-id="dialog"]';
+const DIALOG_SELECTOR = '[data-id="dialog"]';
 const state = { index: 0 };
 
 function getDialog() {
@@ -14,7 +14,7 @@ function isCurrent(pokemon) {
 }
 
 // Flattens the chain, including branches such as Eevee, into one list of names.
-export function collectEvolutionNames(node) {
+function collectEvolutionNames(node) {
   return [node.species.name, ...node.evolves_to.flatMap(collectEvolutionNames)];
 }
 

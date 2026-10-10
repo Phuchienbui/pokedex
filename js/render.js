@@ -8,7 +8,7 @@ import {
   getPokemonCardTemplate,
 } from './templates.js';
 
-export const CONTENT_SELECTOR = '[data-id="content"]';
+const CONTENT_SELECTOR = '[data-id="content"]';
 const LIST_SELECTOR = '.pokemon-list';
 const LOAD_MORE_SELECTOR = '[data-id="load-more-button"]';
 
