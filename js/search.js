@@ -10,14 +10,14 @@ import {
   showNotFound,
 } from './render.js';
 
-export const MIN_SEARCH_LENGTH = 3;
+const MIN_SEARCH_LENGTH = 3;
 const SEARCH_ERROR_MESSAGE = 'The search could not be completed. Please try again.';
 
-export function normalizeQuery(text) {
+function normalizeQuery(text) {
   return text.trim().toLowerCase();
 }
 
-export function filterNames(names, query) {
+function filterNames(names, query) {
   return names.filter((name) => name.includes(query)).slice(0, PAGE_SIZE);
 }
 

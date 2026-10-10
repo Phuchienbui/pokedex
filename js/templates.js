@@ -1,7 +1,7 @@
-// Pure functions that return HTML strings (card, loader, messages).
+// Pure functions that return HTML strings (card, dialog, loader, messages).
 const FALLBACK_IMAGE = 'assets/favicon.svg';
 
-export function formatName(name) {
+function formatName(name) {
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
@@ -10,7 +10,7 @@ function getArtworkUrl(pokemon) {
   return artwork ?? pokemon.sprites.front_default ?? FALLBACK_IMAGE;
 }
 
-export function formatId(id) {
+function formatId(id) {
   return `#${String(id).padStart(3, '0')}`;
 }
 
@@ -28,9 +28,11 @@ export function getPokemonCardTemplate(pokemon) {
   const name = formatName(pokemon.name);
   const types = getTypeNames(pokemon);
   return `<li>
-    <button class="pokemon-card-button card-type-${types[0]}" data-id="card" data-pokemon-id="${pokemon.id}" type="button">
+    <button class="pokemon-card-button card-type-${types[0]}" data-id="card"
+      data-pokemon-id="${pokemon.id}" type="button">
       <span class="pokemon-card-id">${formatId(pokemon.id)}</span>
-      <img data-id="card-image" src="${getArtworkUrl(pokemon)}" alt="${name}" width="120" height="120" loading="lazy" />
+      <img data-id="card-image" src="${getArtworkUrl(pokemon)}" alt="${name}"
+        width="120" height="120" loading="lazy" />
       <span class="pokemon-card-name">${name}</span>
       ${getTypeBadgesTemplate(types)}
     </button>
@@ -60,24 +62,36 @@ function getDialogHeadingTemplate(pokemon, types) {
   const name = formatName(pokemon.name);
   return `<header class="dialog-heading card-type-${types[0]}">
     <h2 class="dialog-title">${name} <span class="dialog-id">${formatId(pokemon.id)}</span></h2>
-    <img data-id="dialog-image" src="${getArtworkUrl(pokemon)}" alt="${name}" width="200" height="200" />
+    <img data-id="dialog-image" src="${getArtworkUrl(pokemon)}" alt="${name}"
+      width="200" height="200" />
     ${getTypeBadgesTemplate(types)}
   </header>`;
 }
 
 // Height is given in decimetres and weight in hectograms.
-export function getDialogInfoTemplate(pokemon) {
+function getStatsSectionTemplate(pokemon) {
   const stats = pokemon.stats.map(getStatTemplate).join('');
+  return `<section class="dialog-section">
+    <h3>Stats</h3>
+    <ul class="stat-list">${stats}</ul>
+    <p>
+      Height: <strong>${pokemon.height / 10} m</strong>,
+      weight: <strong>${pokemon.weight / 10} kg</strong>
+    </p>
+  </section>`;
+}
+
+function getEvolutionSectionTemplate() {
+  return `<section class="dialog-section">
+    <h3>Evolution</h3>
+    <div class="evolution-content"><p>Loading evolution chain…</p></div>
+  </section>`;
+}
+
+export function getDialogInfoTemplate(pokemon) {
   return `${getDialogHeadingTemplate(pokemon, getTypeNames(pokemon))}
-    <section class="dialog-section">
-      <h3>Stats</h3>
-      <ul class="stat-list">${stats}</ul>
-      <p>Height: <strong>${pokemon.height / 10} m</strong>, weight: <strong>${pokemon.weight / 10} kg</strong></p>
-    </section>
-    <section class="dialog-section">
-      <h3>Evolution</h3>
-      <div class="evolution-content"><p>Loading evolution chain…</p></div>
-    </section>`;
+    ${getStatsSectionTemplate(pokemon)}
+    ${getEvolutionSectionTemplate()}`;
 }
 
 export function getEvolutionTemplate(names) {

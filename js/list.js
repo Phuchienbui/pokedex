@@ -31,7 +31,7 @@ function showPage({ details, total }) {
   setLoadMoreVisible(hasMore());
 }
 
-export async function loadNextPage() {
+async function loadNextPage() {
   clearMessages();
   setLoading(true);
   try {
