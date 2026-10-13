@@ -8,8 +8,9 @@
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path .gitignore --ignore-path .git/info/exclude --ignore-path .prettierignore",
     "format:check": "prettier --check . --ignore-path .gitignore --ignore-path .git/info/exclude --ignore-path .prettierignore",
-    "check": "npm run lint && npm run format:check && npm run validate:html",
-    "validate:html": "html-validate index.html"
+    "check": "npm run lint && npm run format:check && npm run validate:html && npm run check:data-ids",
+    "validate:html": "html-validate index.html",
+    "check:data-ids": "node scripts/check-data-ids.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
