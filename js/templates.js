@@ -32,7 +32,7 @@ export function getPokemonCardTemplate(pokemon) {
       data-pokemon-id="${pokemon.id}" type="button">
       <span class="pokemon-card-id">${formatId(pokemon.id)}</span>
       <img data-id="card-image" src="${getArtworkUrl(pokemon)}" alt="${name}"
-        width="120" height="120" loading="lazy" />
+        width="100" height="100" loading="lazy" />
       <span class="pokemon-card-name">${name}</span>
       ${getTypeBadgesTemplate(types)}
     </button>
