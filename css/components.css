@@ -73,7 +73,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-m);
   background-color: var(--card-color, var(--color-surface));
-  color: var(--color-text);
+  color: var(--card-text, var(--color-text));
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -84,11 +84,6 @@
 .pokemon-card-button:focus-visible {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgb(0 0 0 / 25%);
-}
-
-.pokemon-card-button:focus-visible {
-  outline: 3px solid var(--color-text);
-  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -123,6 +118,7 @@
   padding: 0 var(--space-s);
   border-radius: var(--radius-pill);
   background-color: rgb(255 255 255 / 70%);
+  color: var(--color-text);
   font-size: var(--font-size-s);
 }
 
@@ -198,6 +194,15 @@
   --card-color: var(--type-fairy);
 }
 
+/* Dark text is below 4.5:1 on these colors, so they use white text (see docs/accessibility-check.md). */
+.card-type-fighting,
+.card-type-poison,
+.card-type-ghost,
+.card-type-dragon,
+.card-type-dark {
+  --card-text: #ffffff;
+}
+
 .status-area {
   min-height: 2rem;
   text-align: center;
@@ -258,6 +263,11 @@
   overflow: hidden;
 }
 
+/* The dialog only receives focus programmatically and is not interactive itself. */
+.pokemon-dialog:focus-visible {
+  outline: none;
+}
+
 .pokemon-dialog::backdrop {
   background-color: rgb(0 0 0 / 55%);
 }
@@ -275,6 +285,7 @@
   gap: var(--space-s);
   padding: var(--space-l) var(--space-m);
   background-color: var(--card-color, var(--color-bg));
+  color: var(--card-text, var(--color-text));
 }
 
 .dialog-title {

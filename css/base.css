@@ -4,7 +4,7 @@
   --color-surface: #ffffff;
   --color-text: #1d2433;
   --color-text-muted: #5a6478;
-  --color-primary: #e63946;
+  --color-primary: #c92a35;
   --color-primary-dark: #b3202c;
   --color-border: #d6dbe6;
 
@@ -82,6 +82,11 @@ img {
 button,
 input {
   font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 2px;
 }
 
 a {
