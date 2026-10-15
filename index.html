@@ -25,20 +25,40 @@
           placeholder="Search by name (at least 3 letters)"
           autocomplete="off"
         />
-        <button class="search-button" data-id="search-button" type="submit" disabled>Search</button>
+        <button
+          class="search-button"
+          data-id="search-button"
+          type="submit"
+          aria-label="Search Pokémon"
+          disabled
+        >
+          Search
+        </button>
       </form>
     </header>
     <main data-id="content" class="site-content">
       <ul class="pokemon-list"></ul>
       <p class="status-area" role="status" aria-live="polite"></p>
-      <button class="load-more-button" data-id="load-more-button" type="button" hidden>
+      <button
+        class="load-more-button"
+        data-id="load-more-button"
+        type="button"
+        aria-label="Load more Pokémon"
+        hidden
+      >
         Load more
       </button>
     </main>
     <footer class="site-footer">
       <p>Data provided by <a href="https://pokeapi.co/">PokéAPI</a>.</p>
     </footer>
-    <dialog class="pokemon-dialog" data-id="dialog" aria-label="Pokémon details">
+    <dialog
+      class="pokemon-dialog"
+      data-id="dialog"
+      aria-labelledby="dialog-title"
+      aria-label="Pokémon details"
+      tabindex="-1"
+    >
       <div class="dialog-panel" data-id="overlay-pokemon-name">
         <button
           class="dialog-button dialog-close"

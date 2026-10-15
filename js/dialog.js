@@ -1,9 +1,9 @@
 // Detail dialog (open, close, previous and next).
 import { fetchEvolutionChain, fetchSpecies } from './api.js';
-import { getShownPokemon, renderDialogInfo, renderEvolution } from './render.js';
+import { focusCard, getShownPokemon, renderDialogInfo, renderEvolution } from './render.js';
 
 const DIALOG_SELECTOR = '[data-id="dialog"]';
-const state = { index: 0 };
+const state = { index: 0, triggerId: null };
 
 function getDialog() {
   return document.querySelector(DIALOG_SELECTOR);
@@ -37,10 +37,20 @@ function showPokemon(index) {
   loadEvolution(pokemons[state.index]);
 }
 
+// Focus moves to the dialog itself, so screen readers announce its name first.
 function openDialog(index) {
+  const dialog = getDialog();
+  state.triggerId = getShownPokemon()[index].id;
   document.body.classList.add('no-scroll');
   showPokemon(index);
-  getDialog().showModal();
+  dialog.showModal();
+  dialog.focus();
+}
+
+// Focus goes back to the card that opened the dialog, however the dialog was closed.
+function handleClose() {
+  document.body.classList.remove('no-scroll');
+  focusCard(state.triggerId);
 }
 
 function handleCardClick(event) {
@@ -70,5 +80,5 @@ export function initDialog() {
   document.querySelector('.pokemon-list').addEventListener('click', handleCardClick);
   dialog.addEventListener('click', handleDialogClick);
   dialog.addEventListener('keydown', handleKeydown);
-  dialog.addEventListener('close', () => document.body.classList.remove('no-scroll'));
+  dialog.addEventListener('close', handleClose);
 }
