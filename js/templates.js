@@ -23,16 +23,21 @@ function getTypeBadgesTemplate(typeNames) {
   return `<span class="type-badges">${badges.join('')}</span>`;
 }
 
+function getCardImageTemplate(pokemon, name) {
+  return `<img data-id="card-image" src="${getArtworkUrl(pokemon)}" alt="${name}"
+    width="100" height="100" loading="lazy" />`;
+}
+
 // The first type decides the card color (class card-type-<name>).
+// The aria-label gives the button one clear name instead of reading all its parts.
 export function getPokemonCardTemplate(pokemon) {
   const name = formatName(pokemon.name);
   const types = getTypeNames(pokemon);
   return `<li>
     <button class="pokemon-card-button card-type-${types[0]}" data-id="card"
-      data-pokemon-id="${pokemon.id}" type="button">
+      data-pokemon-id="${pokemon.id}" type="button" aria-label="Open details for ${name}">
       <span class="pokemon-card-id">${formatId(pokemon.id)}</span>
-      <img data-id="card-image" src="${getArtworkUrl(pokemon)}" alt="${name}"
-        width="100" height="100" loading="lazy" />
+      ${getCardImageTemplate(pokemon, name)}
       <span class="pokemon-card-name">${name}</span>
       ${getTypeBadgesTemplate(types)}
     </button>
@@ -61,7 +66,9 @@ function getStatTemplate(entry) {
 function getDialogHeadingTemplate(pokemon, types) {
   const name = formatName(pokemon.name);
   return `<header class="dialog-heading card-type-${types[0]}">
-    <h2 class="dialog-title">${name} <span class="dialog-id">${formatId(pokemon.id)}</span></h2>
+    <h2 class="dialog-title" id="dialog-title">
+      ${name} <span class="dialog-id">${formatId(pokemon.id)}</span>
+    </h2>
     <img data-id="dialog-image" src="${getArtworkUrl(pokemon)}" alt="${name}"
       width="200" height="200" />
     ${getTypeBadgesTemplate(types)}

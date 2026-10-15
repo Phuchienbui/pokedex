@@ -48,6 +48,11 @@ export function appendCards(pokemons) {
   document.querySelector(LIST_SELECTOR).insertAdjacentHTML('beforeend', getCardsHtml(pokemons));
 }
 
+// Puts keyboard focus back on a card, for example after the dialog closes.
+export function focusCard(pokemonId) {
+  document.querySelector(`[data-pokemon-id="${pokemonId}"]`)?.focus();
+}
+
 export function renderDialogInfo(pokemon) {
   document.querySelector('.dialog-info').innerHTML = getDialogInfoTemplate(pokemon);
 }
