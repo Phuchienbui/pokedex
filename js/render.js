@@ -59,7 +59,7 @@ export function renderDialogInfo(pokemon) {
 
 // names is null when the evolution chain could not be loaded.
 export function renderEvolution(names) {
-  document.querySelector('.evolution-content').innerHTML = getEvolutionTemplate(names);
+  document.querySelector('.evolution-content').outerHTML = getEvolutionTemplate(names);
 }
 
 export function showNotFound() {

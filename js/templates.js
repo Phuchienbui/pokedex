@@ -91,7 +91,7 @@ function getStatsSectionTemplate(pokemon) {
 function getEvolutionSectionTemplate() {
   return `<section class="dialog-section">
     <h3>Evolution</h3>
-    <div class="evolution-content"><p>Loading evolution chain…</p></div>
+    <p class="evolution-content">Loading evolution chain…</p>
   </section>`;
 }
 
@@ -102,10 +102,10 @@ export function getDialogInfoTemplate(pokemon) {
 }
 
 export function getEvolutionTemplate(names) {
-  if (!names) return '<p>The evolution chain could not be loaded.</p>';
-  if (names.length === 1) return '<p>This Pokémon does not evolve.</p>';
+  if (!names) return '<p class="evolution-content">The evolution chain could not be loaded.</p>';
+  if (names.length === 1) return '<p class="evolution-content">This Pokémon does not evolve.</p>';
   const items = names.map((name) => `<li>${formatName(name)}</li>`).join('');
-  return `<ol class="evolution-list">${items}</ol>`;
+  return `<ol class="evolution-content evolution-list">${items}</ol>`;
 }
 
 export function getLoaderTemplate() {
