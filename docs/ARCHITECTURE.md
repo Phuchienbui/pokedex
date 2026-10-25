@@ -12,7 +12,7 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
 | `index.html`         | Page skeleton: header, `main`, footer, module entry                   |
 | `css/base.css`       | Design tokens (`:root` variables), reset, typography, utility classes |
 | `css/layout.css`     | Page-level layout and the 1440 px content width                       |
-| `css/components.css` | Reusable components (logo, later cards, dialog)                       |
+| `css/components.css` | Reusable components (logo, cards, dialog)                             |
 | `js/main.js`         | Entry point, wires modules together                                   |
 | `js/api.js`          | All requests to the PokéAPI                                           |
 | `js/cache.js`        | `Map` caches for details, species and evolution chains                |
@@ -22,6 +22,8 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
 | `js/search.js`       | Search input and filtering                                            |
 | `js/dialog.js`       | Detail dialog                                                         |
 | `assets/`            | Logo and favicon                                                      |
+| `scripts/`           | `check-data-ids.js`, verifies the required `data-id` attributes       |
+| `docs/`              | Architecture and the accessibility, responsive and acceptance checks  |
 
 ## Decisions
 
@@ -68,10 +70,10 @@ Plain HTML, CSS and JavaScript (ES modules). No framework and no build tool. Dat
 
 ## Cards
 
-- **Type color table in CSS variables.** The 18 type colors are --type-* variables in ase.css. A card gets the class card-type-<first type>, which only sets --card-color. The card reads that one variable, so the template needs no inline style and a color is changed in one place.
-- **Badges are spans.** A utton may only contain inline content, so the type badges are span elements and not a list.
+- **Type color table in CSS variables.** The 18 type colors are --type-* variables in base.css. A card gets the class card-type-<first type>, which only sets --card-color. The card reads that one variable, so the template needs no inline style and a color is changed in one place.
+- **Badges are spans.** A button may only contain inline content, so the type badges are span elements and not a list.
 - **Hover and keyboard.** Hover and :focus-visible share one raised look with a shadow, plus a clear outline for keyboard focus. With prefers-reduced-motion the movement is switched off.
-- **Contrast.** Dark text on the saturated type colors is still to be checked and documented in the accessibility step.
+- **Contrast.** The five types that fail with dark text (fighting, poison, ghost, dragon, dark) use white text. Details are in [accessibility-check.md](accessibility-check.md).
 
 ## Dialog
 
